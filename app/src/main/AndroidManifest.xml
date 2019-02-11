@@ -16,6 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Add_new" />
+        <activity android:name=".Update_new" />
+        <activity android:name=".Myorder_details" />
+        <activity
+            android:name=".Navigation_drawer"
+            android:label="@string/title_activity_navigation_drawer" />
+        <activity android:name=".My_order" />
+        <activity android:name=".Recycler_myorder" />
+        <activity android:name=".Review" />
+        <activity android:name=".Checkout"></activity>
     </application>
 
 </manifest>

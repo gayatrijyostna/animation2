@@ -14,14 +14,12 @@ public class Recycler_grocery extends RecyclerView.Adapter<Recycler_grocery.View
 
     Context context;
     String[] arr;
-    String[] arr1;
-    int[] images;
+   int[] images;
 
 
-    public Recycler_grocery(Grocery mainActivity, String[] arr, String[] arr1, int[] images) {
+    public Recycler_grocery(Grocery mainActivity, String[] arr, int[] images) {
         context= mainActivity;
         this.arr=arr;
-        this.arr1=arr1;
         this.images=images;
     }
 
@@ -37,8 +35,7 @@ public class Recycler_grocery extends RecyclerView.Adapter<Recycler_grocery.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass viewHolderClass, int i) {
         viewHolderClass.textView.setText( arr[i] );
-        viewHolderClass.textView1.setText( arr1[i] );
-        viewHolderClass.imageView.setImageResource( images[i] );
+        viewHolderClass.imageView.setImageResource(images[i]);
 
     }
 
@@ -50,14 +47,11 @@ public class Recycler_grocery extends RecyclerView.Adapter<Recycler_grocery.View
 
     class ViewHolderClass extends RecyclerView.ViewHolder {
         TextView textView;
-        TextView textView1;
         ImageView imageView;
         public ViewHolderClass(@NonNull View itemView) {
             super( itemView );
-
-            textView=itemView.findViewById(R.id.name);
-            textView1=itemView.findViewById(R.id.nme);
-            imageView = itemView.findViewById(R.id.img);
+            textView=itemView.findViewById(R.id.tv_fruits);
+            imageView = itemView.findViewById(R.id.fruits);
 
         }
-    }
+    }}

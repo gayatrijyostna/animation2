@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Recycler_myorder">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <ImageView
+            android:id="@+id/tataimg"
+            android:layout_width="180dp"
+            android:layout_height="150dp"
+            android:src="@drawable/salt"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/tatatitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tata Salt,1kg"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginTop="20dp"/>
+            <TextView
+                android:id="@+id/price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Price:Rs.18"
+                android:layout_marginTop="2dp"/>
+            <TextView
+                android:id="@+id/orderdate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Ordered on o4-oct-2017"
+                android:layout_marginTop="2dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <Button
+                    android:id="@+id/Reorder"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:text="Reorder"
+                    android:layout_marginTop="10dp"
+                    android:background="#da7e1b"/>
+                <Button
+                    android:id="@+id/Review"
+                    android:layout_width="100dp"
+                    android:layout_height="30dp"
+                    android:text="Review"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginTop="10dp"
+                    android:background="#da7e1b"/>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
