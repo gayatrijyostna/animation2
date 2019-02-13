@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/Home"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Home" />
+        <item
+            android:id="@+id/about_us"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="About us" />
+        <item
+            android:id="@+id/events"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Events" />
+        <item
+            android:id="@+id/matrimony"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Matrimony" />
+    </group>
+
+
+        <group>
+            <item
+                android:id="@+id/shoppby_category"
+                android:icon="@drawable/ic_menu_share"
+                android:title="Shop by Category" />
+            <item
+                android:id="@+id/my_orders"
+                android:icon="@drawable/ic_menu_send"
+                android:title="My Orders" />
+            <item
+                android:id="@+id/my_account"
+                android:icon="@drawable/ic_menu_send"
+                android:title="My Account" />
+            <item
+                android:id="@+id/my_cart"
+                android:icon="@drawable/ic_menu_send"
+                android:title="My Cart" />
+        </group>
+<group>
+    <item
+        android:id="@+id/edit_profile"
+        android:icon="@drawable/ic_menu_share"
+        android:title="Edit Profile" />
+    <item
+        android:id="@+id/change_password"
+        android:icon="@drawable/ic_menu_share"
+        android:title="Change Password" />
+
+
+</group>
+    <group>
+        <item
+            android:id="@+id/CUSTOMER_SERVICE"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Customer Service" />
+        <item
+            android:id="@+id/legal_disclaimer"
+            android:icon="@drawable/ic_menu_share"
+            android:title="Legal Disclaimer" />
+        <item
+           android:id="@+id/logout"
+        android:icon="@drawable/ic_menu_share"
+        android:title="Log out" />
+
+
+    </group>
+
+</menu>

@@ -17,8 +17,8 @@ public class Recycler_grocery extends RecyclerView.Adapter<Recycler_grocery.View
    int[] images;
 
 
-    public Recycler_grocery(Grocery mainActivity, String[] arr, int[] images) {
-        context= mainActivity;
+    public Recycler_grocery(Context Grocery, String[] arr, int[] images) {
+        context= Grocery;
         this.arr=arr;
         this.images=images;
     }

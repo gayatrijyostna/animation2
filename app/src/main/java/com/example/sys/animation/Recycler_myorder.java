@@ -21,8 +21,8 @@ public class Recycler_myorder extends RecyclerView.Adapter<Recycler_myorder.View
     String[] review,reorder;
 
 
-    public Recycler_myorder(Context page5fragment1, int[] images, String[] imgname, String[] price,String[] orderedtime,String[] review,String[] reorder) {
-        context = page5fragment1;
+    public Recycler_myorder(Context My_order, int[] images, String[] imgname, String[] price,String[] orderedtime,String[] review,String[] reorder) {
+        context = My_order;
         this.images = images;
         this.imgname=imgname;
         this.price=price;
@@ -84,6 +84,9 @@ public class Recycler_myorder extends RecyclerView.Adapter<Recycler_myorder.View
             txtview=itemView.findViewById(R.id.tatatitle);
             txtview1=itemView.findViewById( R.id.price );
             txtview2=itemView.findViewById( R.id.orderdate );
+            review=itemView.findViewById( R.id.Review );
+            reorder=itemView.findViewById( R.id.Reorder );
+
 
 
 

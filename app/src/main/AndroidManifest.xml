@@ -9,23 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Grocery">
+        <activity android:name=".Add_new" />
+        <activity android:name=".Update_new" />
+        <activity android:name=".Myorder_details" />
+        <activity android:name=".Review" />
+        <activity android:name=".Bevarages"></activity>
+        <activity android:name=".Delivery_address" />
+        <activity android:name=".share_review" />
+        <activity android:name=".Tabbed">
+
+        </activity>
+        <activity android:name=".Navigation_drawer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Add_new" />
-        <activity android:name=".Update_new" />
-        <activity android:name=".Myorder_details" />
-        <activity
-            android:name=".Navigation_drawer"
-            android:label="@string/title_activity_navigation_drawer" />
-        <activity android:name=".My_order" />
-        <activity android:name=".Recycler_myorder" />
-        <activity android:name=".Review" />
-        <activity android:name=".Checkout"></activity>
     </application>
 
 </manifest>
