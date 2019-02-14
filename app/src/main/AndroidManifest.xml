@@ -13,12 +13,10 @@
         <activity android:name=".Update_new" />
         <activity android:name=".Myorder_details" />
         <activity android:name=".Review" />
-        <activity android:name=".Bevarages"></activity>
+        <activity android:name=".Bevarages" />
         <activity android:name=".Delivery_address" />
-        <activity android:name=".share_review" />
-        <activity android:name=".Tabbed">
-
-        </activity>
+        <activity android:name=".Share_review" />
+        <activity android:name=".Tabbed" />
         <activity android:name=".Navigation_drawer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +24,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".Signup" />
+        <activity android:name=".Adminpage"></activity>
     </application>
 
 </manifest>

@@ -53,6 +53,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <TextView
+                android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="John Legend"
@@ -140,7 +141,7 @@
                     android:entries="@array/city"
                     android:layout_marginRight="10dp"
                     android:padding="10dp"
-                    android:hint="dd"></Spinner>
+                    android:hint="CITY"></Spinner>
                     /></android.support.design.widget.TextInputLayout>
             <android.support.design.widget.TextInputLayout
                 android:id="@+id/username5"
@@ -205,12 +206,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
-                android:padding="10dp"
-                android:background="#6B8E23"
-                android:text="SAVE"
-                android:textColorHint="#000000"
                 android:layout_marginTop="10dp"
-                />
+                android:background="#6B8E23"
+                android:padding="10dp"
+                android:text="SAVE"
+                android:textColorHint="#000000" />
 
         </LinearLayout>
 
