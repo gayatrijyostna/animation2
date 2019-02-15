@@ -15,6 +15,7 @@ public class Database_class extends SQLiteOpenHelper {
     ArrayList <Map <String, String>> data1;
     public static final String DB_NAME = "student";
     public static final String TABLE_NAME = "table_name";
+    public static final String COLUMN_ID = "column_id";
     public static final String HOUSE_NO = "houseno";
     public static final String STREET = "street";
     public static final String LANDMARK = "landmark";
@@ -22,11 +23,14 @@ public class Database_class extends SQLiteOpenHelper {
     public static final String EMAIL = "email";
     public static final String PASSWORD = "password";
     public static final String DISTRICT = "district";
+    public static final String NAME = "name";
     public static final String STATE = "state";
     public static final String PINCODE = "pincode";
     public static final String CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + "("
+                    + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
                     + EMAIL + " TEXT,"
+                    + NAME + " TEXT,"
                     + PASSWORD + " TEXT,"
                     + HOUSE_NO + " TEXT,"
                     + STREET + " TEXT,"
@@ -50,10 +54,11 @@ public class Database_class extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
     }
-    public void insertValues(String house_str, String street_str, String landmark_Str, String city_str, String district_str, String state_str,String pincode_str) {
+    public void insertValues(String house_str, String street_str, String landmark_Str, String city_str, String district_str, String state_str,String pincode_str,String name) {
         SQLiteDatabase sqLiteDatabase = getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(HOUSE_NO, house_str);
+        values.put(NAME, name);
         values.put(STREET, street_str);
         values.put(LANDMARK, landmark_Str);
         values.put(CITY, city_str);
@@ -93,12 +98,12 @@ public class Database_class extends SQLiteOpenHelper {
         }
         return data;
     }
-    public ArrayList<Map<String, String>> getprofile(String email,String  house_str, String street_str, String landmark_Str, String city_str, String district_str, String state_str,String pincode_str ) {
+    public ArrayList<Map<String, String>> getprofile(String email) {
         data1 = new ArrayList();
 
         SQLiteDatabase sqLiteDatabase = getReadableDatabase();
 
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " where " + EMAIL + " = '" + email + "' and " + PASSWORD + " = '" + password + "'", null);
+        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + TABLE_NAME + " where " + EMAIL + " = '" + email + "'",null);
 
         if (cursor.moveToFirst()) {
 
@@ -106,11 +111,20 @@ public class Database_class extends SQLiteOpenHelper {
                 Map<String, String> hmap = new HashMap<>();
 
                 hmap.put(EMAIL, cursor.getString(cursor.getColumnIndex(EMAIL)));
-                hmap.put(PASSWORD, cursor.getString(cursor.getColumnIndex(PASSWORD)));
+                hmap.put(TABLE_NAME, cursor.getString(cursor.getColumnIndex(TABLE_NAME)));
                 data1.add(hmap);
 
             } while (cursor.moveToNext());
         }
         return data1;
+    }
+    public boolean updateData1(String select,String email) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        contentValues.put(EMAIL,select);
+
+        db.update(TABLE_NAME, contentValues, "EMAIL = ?",new String[] { email });
+        return true;
     }
 }

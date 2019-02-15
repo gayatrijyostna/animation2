@@ -1,6 +1,7 @@
 package com.example.sys.animation;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -33,10 +34,21 @@ public class Recycler_grocery extends RecyclerView.Adapter<Recycler_grocery.View
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderClass viewHolderClass, int i) {
+    public void onBindViewHolder(@NonNull ViewHolderClass viewHolderClass,  final int i) {
         viewHolderClass.textView.setText( arr[i] );
-        viewHolderClass.imageView.setImageResource(images[i]);
+        viewHolderClass.imageView.setOnClickListener( new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (arr[i]=="Fruits and vegetables")
+                {
+                    Intent i=new Intent(context,Home_fragment.class);
 
+                    context.startActivity( i );
+
+                }
+
+            }
+        } );
     }
 
 
