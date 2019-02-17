@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,7 +17,7 @@ public class Recycler_grocery extends RecyclerView.Adapter<Recycler_grocery.View
    int[] images;
 
 
-    public Recycler_grocery(Context Grocery, String[] arr, int[] images) {
+    public Recycler_grocery(Context Grocery, String[] strings, String[] arr, int[] images) {
         context= Grocery;
         this.arr=arr;
         this.images=images;
@@ -41,11 +40,19 @@ public class Recycler_grocery extends RecyclerView.Adapter<Recycler_grocery.View
             public void onClick(View v) {
                 if (arr[i]=="Fruits and vegetables")
                 {
-                    Intent i=new Intent(context,Home_fragment.class);
+                    Intent i=new Intent(context,Fruits_and_vegetables.class);
 
                     context.startActivity( i );
 
                 }
+                if (arr[i]=="Bevarages")
+                {
+                    Intent i=new Intent(context,Bevarages.class);
+
+                    context.startActivity( i );
+
+                }
+
 
             }
         } );

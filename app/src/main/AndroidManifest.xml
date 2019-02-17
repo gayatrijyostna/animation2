@@ -16,7 +16,7 @@
         <activity android:name=".Bevarages" />
         <activity android:name=".Delivery_address" />
         <activity android:name=".Share_review" />
-        <activity android:name=".Tabbed" />
+        <activity android:name=".Fruits_and_vegetables" />
         <activity android:name=".Navigation_drawer">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,7 +25,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".Signup" />
-        <activity android:name=".Adminpage"></activity>
+        <activity android:name=".Adminpage" />
+        <activity android:name=".Recycler_delivery_address"></activity>
     </application>
 
 </manifest>

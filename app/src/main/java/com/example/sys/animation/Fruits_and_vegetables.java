@@ -5,7 +5,7 @@ package com.example.sys.animation;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
 
-public class Tabbed extends AppCompatActivity {
+public class Fruits_and_vegetables extends AppCompatActivity {
     TabLayout tabLayout;
     ViewPager viewPager;
     @Override
