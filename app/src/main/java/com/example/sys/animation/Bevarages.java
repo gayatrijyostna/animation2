@@ -22,7 +22,7 @@ import android.widget.RatingBar;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-public class Bevarages extends Fragment {
+public class Bevarages extends AppCompatActivity {
     RatingBar r;
     OnFragmentSendVal vSendVal;
     private RatingBar ratingBar;
@@ -56,12 +56,12 @@ public class Bevarages extends Fragment {
         View view = inflater.inflate(R.layout.activity_bevarages, container, false);
         RecyclerView recyclerView1 = view.findViewById(R.id.recycle);
 
-        recyclerView1.setLayoutManager(new GridLayoutManager(getActivity(), 2));
-        Recycler_bevarages recyclerAdapter = new Recycler_bevarages(getActivity(), arr, arr1, img);
+        recyclerView1.setLayoutManager(new GridLayoutManager(Bevarages.this, 2));
+        Recycler_bevarages recyclerAdapter = new Recycler_bevarages(Bevarages.this, arr, arr1, img);
         recyclerView1.setAdapter(recyclerAdapter);
-        getActivity().getWindow().setSoftInputMode(WindowManager.
+      getWindow().setSoftInputMode(WindowManager.
                 LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
-        getActivity().setTitle("GROCERY");
+ setTitle("GROCERY");
         addListenerOnRatingBar(view);
         return view;
     }

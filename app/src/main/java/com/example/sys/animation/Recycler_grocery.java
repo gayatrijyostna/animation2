@@ -17,7 +17,7 @@ public class Recycler_grocery extends RecyclerView.Adapter<Recycler_grocery.View
    int[] images;
 
 
-    public Recycler_grocery(Context Grocery, String[] strings, String[] arr, int[] images) {
+    public Recycler_grocery(Context Grocery, String[] arr, int[] images) {
         context= Grocery;
         this.arr=arr;
         this.images=images;
@@ -35,17 +35,18 @@ public class Recycler_grocery extends RecyclerView.Adapter<Recycler_grocery.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolderClass viewHolderClass,  final int i) {
         viewHolderClass.textView.setText( arr[i] );
+        viewHolderClass.imageView.setImageResource( images[i] );
         viewHolderClass.imageView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (arr[i]=="Fruits and vegetables")
+                if (arr[i].equals( "Fruits and vegetables"))
                 {
                     Intent i=new Intent(context,Fruits_and_vegetables.class);
 
                     context.startActivity( i );
 
                 }
-                if (arr[i]=="Bevarages")
+                if (arr[i].equals( "Bevarages"))
                 {
                     Intent i=new Intent(context,Bevarages.class);
 

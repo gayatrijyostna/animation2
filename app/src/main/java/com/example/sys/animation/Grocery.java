@@ -24,7 +24,7 @@ public class Grocery extends Fragment {
         View view = inflater.inflate( R.layout.activity_main, container, false );
         RecyclerView recyclerView1 = view.findViewById( R.id.recycler3 );
         recyclerView1.setLayoutManager( new GridLayoutManager( getActivity(),2 ) );
-            Recycler_grocery recyclerAdapter = new Recycler_grocery( getActivity(), arr, arr,images);
+            Recycler_grocery recyclerAdapter = new Recycler_grocery( getActivity(),arr,images);
             recyclerView1.setAdapter( recyclerAdapter );
         getActivity().getWindow().setSoftInputMode( WindowManager.
                 LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
