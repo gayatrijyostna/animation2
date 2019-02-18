@@ -11,11 +11,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.ViewHolderClass> {
+public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.MyViewHolder> {
+    RatingBar ratingBar;
 
     Context context;
     String[] arr;
@@ -23,7 +27,7 @@ public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.
     int[] img;
 
    private ClickListener clickListener;
-    public Recycler_bevarages(Context Grocery, String[] arr1, String[] arr, int[] img,ClickListener clickListener) {
+    public Recycler_bevarages(Context Grocery, String[] arr1, String[] arr, int[] img) {
         context= Grocery;
         this.clickListener=clickListener;
         this.arr=arr;
@@ -32,17 +36,17 @@ public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.
     }
     @NonNull
     @Override
-    public Recycler_bevarages.ViewHolderClass onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view= LayoutInflater.from(context).inflate(R.layout.activity_recycler_bevarages,viewGroup,false );
-        Recycler_bevarages.ViewHolderClass viewHolderClass=new Recycler_bevarages.ViewHolderClass(view);
-        return viewHolderClass;
+//        Recycler_bevarages.ViewHolderClass viewHolderClass=new Recycler_bevarages.ViewHolderClass(view);
+        return new  MyViewHolder(view, clickListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderClass viewHolderClass, final int i) {
-        viewHolderClass.textView.setText( arr[i] );
-        viewHolderClass.textview2.setText( arr1[i] );
-        viewHolderClass.imageView.setOnClickListener( new View.OnClickListener() {
+    public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
+        myViewHolder.textView.setText( arr[i] );
+        myViewHolder.textview2.setText( arr1[i] );
+        myViewHolder.imageView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (arr[i]=="Fruits and vegetables")
@@ -59,13 +63,14 @@ public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.
     }
 
 
+
     @Override
     public int getItemCount() {
         return arr.length;
     }
 
 
-    public  class ViewHolderClass extends RecyclerView.ViewHolder {
+    public  class MyViewHolder extends RecyclerView.ViewHolder {
         TextView  quantity;
         TextView  plus, minus;
         int sum;
@@ -73,7 +78,7 @@ public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.
         TextView textView;
         TextView textview2;
         ImageView imageView;
-        public ViewHolderClass(@NonNull View itemView,final ClickListener listener) {
+        public MyViewHolder(@NonNull View itemView,final ClickListener listener) {
             super( itemView );
             textView=itemView.findViewById(R.id.tata);
             textview2=itemView.findViewById(R.id.rupees);

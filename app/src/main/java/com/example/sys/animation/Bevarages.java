@@ -1,5 +1,6 @@
 package com.example.sys.animation;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -23,6 +24,8 @@ import android.widget.Toast;
 
 public class Bevarages extends Fragment {
     RatingBar r;
+    OnFragmentSendVal vSendVal;
+    private RatingBar ratingBar;
     RecyclerView recyclerView;
     ImageView filter;
     String[] arr = {"Tata salt 1kg", "Fortune oil 1lt", "Vim dish bar", "Maggie 2mins masal"};
@@ -31,25 +34,52 @@ public class Bevarages extends Fragment {
     ArrayAdapter<String> adapter;
     Recycler_bevarages recycler;
 
+    public interface OnFragmentSendVal{
+        public void onSentVal(float value);
+    }
+
+    public Bevarages() {
+        // Required empty public constructor
+    }
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try{
+            vSendVal = (OnFragmentSendVal)activity;
+        }catch (ClassCastException e){
+            throw new ClassCastException(activity.toString() + " must implement OnFragmentSendVal");
+        }
+    }
+
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_bevarages, container, false);
         RecyclerView recyclerView1 = view.findViewById(R.id.recycle);
-//            addListenerOnRatingBar();
+
         recyclerView1.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         Recycler_bevarages recyclerAdapter = new Recycler_bevarages(getActivity(), arr, arr1, img);
         recyclerView1.setAdapter(recyclerAdapter);
         getActivity().getWindow().setSoftInputMode(WindowManager.
                 LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         getActivity().setTitle("GROCERY");
+        addListenerOnRatingBar(view);
         return view;
     }
 
-//        public void addListenerOnButtonClick () {
-//            r = (RatingBar) findViewById(R.id.ratingBar);
-//            r.getOnRatingBarChangeListener();
-//            String rating = String.valueOf(r.getRating());
-//            Toast.makeText(getApplicationContext(), rating, Toast.LENGTH_LONG).show();
-//        }
+    private void addListenerOnRatingBar(View view) {
+        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
+        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
+            public void onRatingChanged(RatingBar ratingBar, float rating,
+                                        boolean fromUser) {
+
+
+
+                float val = rating;
+                vSendVal.onSentVal(val);
+                //txtRatingValue.setText(String.valueOf(rating));
+
+            }
+        });
+    }
 
     }
