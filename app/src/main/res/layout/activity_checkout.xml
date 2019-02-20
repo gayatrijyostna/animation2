@@ -71,6 +71,28 @@
             android:textColorHint="#000000"
             android:layout_marginTop="10dp"
             />
+    </LinearLayout>
+        <LinearLayout
+            android:id="@+id/bottom_cart_layout"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="8dp"
+            android:background="#006efd"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/cart_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="Apply"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+        </LinearLayout>
+
+
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/recycler4"
@@ -78,5 +100,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
 
-    </LinearLayout>
+
+
 </ScrollView>

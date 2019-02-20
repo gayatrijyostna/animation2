@@ -3,7 +3,6 @@ package com.example.sys.animation;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -26,10 +25,6 @@ public class My_order extends Fragment {
         View view = inflater.inflate( R.layout.activity_my_order, container, false );
         RecyclerView recyclerView1 = view.findViewById( R.id.recycler_order );
         recyclerView1.setLayoutManager( new GridLayoutManager( getActivity(),1 ) );
-        Recycler_myorder recyclerAdapter = new Recycler_myorder( getActivity(),images,imgname,price,orderedtime,review,reorder );
-        recyclerView1.setAdapter( recyclerAdapter );
-
-
 
         return view;
 

@@ -17,18 +17,23 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class Recycler_checkout extends RecyclerView.Adapter<Recycler_checkout.ViewHolderClass> {
+public class Recycler_checkout extends RecyclerView.Adapter<Recycler_checkout.MyViewHolder> {
     Context context;
     int[] images;
     String[] imgname;
     String[] price;
     String[] orderedtime;
     String[] remove;
+    TextView  quantity;
+    TextView  plus, minus;
+    int sum;
 
 
+    private ClickListener clickListener;
     public Recycler_checkout(Context Checkout, int[] images, String[] imgname, String[] price, String[] orderedtime, String[] remove) {
         context = Checkout;
         this.images = images;
+        this.clickListener= this.clickListener;
         this.imgname = imgname;
         this.price = price;
         this.orderedtime = orderedtime;
@@ -39,19 +44,19 @@ public class Recycler_checkout extends RecyclerView.Adapter<Recycler_checkout.Vi
 
     @NonNull
     @Override
-    public Recycler_checkout.ViewHolderClass onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from( context ).inflate( R.layout.activity_recycler_checkout, viewGroup, false );
-        Recycler_checkout.ViewHolderClass viewHolderClass = new Recycler_checkout.ViewHolderClass( view );
-        return viewHolderClass;
+//        Recycler_checkout.ViewHolderClass viewHolderClass = new Recycler_checkout.ViewHolderClass( view );
+        return new  MyViewHolder(view, clickListener);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolderClass viewHolderClass, int i) {
-        viewHolderClass.imageView.setImageResource( images[i] );
-        viewHolderClass.txtview.setText( imgname[i] );
-        viewHolderClass.txtview1.setText( price[i] );
-        viewHolderClass.txtview2.setText( orderedtime[i] );
-        viewHolderClass.remove.setOnClickListener( new View.OnClickListener() {
+    public void onBindViewHolder(@NonNull MyViewHolder MyViewHolder, int i) {
+        MyViewHolder.imageView.setImageResource( images[i] );
+        MyViewHolder.txtview.setText( imgname[i] );
+        MyViewHolder.txtview1.setText( price[i] );
+        MyViewHolder.txtview2.setText( orderedtime[i] );
+        MyViewHolder.remove.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -67,7 +72,7 @@ public class Recycler_checkout extends RecyclerView.Adapter<Recycler_checkout.Vi
         return images.length;
     }
 
-    public class ViewHolderClass extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView txtview;
         TextView txtview1;
@@ -82,7 +87,7 @@ public class Recycler_checkout extends RecyclerView.Adapter<Recycler_checkout.Vi
         int sum;
         int single_item_price;
 
-        public ViewHolderClass(@NonNull View itemView, final ClickListener listener) {
+        public MyViewHolder(@NonNull View itemView, final ClickListener listener) {
             super( itemView );
 
 
@@ -90,73 +95,37 @@ public class Recycler_checkout extends RecyclerView.Adapter<Recycler_checkout.Vi
 
             plus = itemView.findViewById( R.id.item_add );
             minus = itemView.findViewById( R.id.item_sub );
-
-
-           /* name = itemView.findViewById(R.id.item_name);
-            productName = itemView.findViewById(R.id.rest_name);
-            *//*prod_unit = itemView.findViewById(R.id.tv_unit);
-            price = itemView.findViewById(R.id.tv_price);
-            quantity = itemView.findViewById(R.id.tv_quantity);*//*
-            prod_image = itemView.findViewById(R.id.img_prod);
-            prod_image.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    context.startActivity(new Intent(context, ProductActivity.class));
-                }
-            });*/
-
-            plus.setOnClickListener( new View.OnClickListener() {
+            plus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-
-                    sum = Integer.parseInt( count.getText().toString() );
-                    single_item_price = Integer.parseInt( single_price.getText().toString() );
-
                     sum = sum + 1;
-                    Log.e( "Quantity value2", "" + sum );
+                    Log.e("Quantity value 2 ", "" + sum);
                     if (sum > 0) {
-                        count.setVisibility( View.VISIBLE );
-                        minus.setVisibility( View.VISIBLE );
-                        price.setVisibility( View.VISIBLE );
+                        quantity.setVisibility(View.VISIBLE);
+                        minus.setVisibility(View.VISIBLE);
                     }
-                    count.setText( String.valueOf( sum ) );
-
-                    price.setText( "\u20B9 " + (single_item_price * sum) );
-                    listener.itemClick( view, getAdapterPosition(), sum );
+                    quantity.setText(String.valueOf(sum));
+                    listener.itemClick(view, getAdapterPosition(), sum);
                 }
-            } );
-            minus.setOnClickListener( new View.OnClickListener() {
+            });
+
+            minus.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    sum = Integer.parseInt( count.getText().toString() );
-                    single_item_price = Integer.parseInt( single_price.getText().toString() );
-
                     if (sum > 0) {
                         sum = sum - 1;
                         if (sum == 0) {
-                            count.setVisibility( View.INVISIBLE );
-                            minus.setVisibility( View.INVISIBLE );
-                            price.setVisibility( View.GONE );
-                        } else {
-                            price.setVisibility( View.VISIBLE );
+                            quantity.setVisibility(View.INVISIBLE);
+                            minus.setVisibility(View.INVISIBLE);
                         }
-                        count.setText( String.valueOf( sum ) );
-                        price.setText( "\u20B9 " + (single_item_price * sum) );
-                        listener.itemClick( view, getAdapterPosition(), sum );
+                        quantity.setText(String.valueOf(sum));
+                        listener.itemClick(view, getAdapterPosition(), sum);
                     }
                 }
+            });
 
-            } );
-        }
 
-        public ViewHolderClass(@NonNull View itemView) {
-            super( itemView );
-            imageView = itemView.findViewById( R.id.tataimg );
-            txtview = itemView.findViewById( R.id.tatatitle );
-            txtview1 = itemView.findViewById( R.id.price );
-            txtview2 = itemView.findViewById( R.id.orderdate );
-
-        }
+            }
     }
 
 }

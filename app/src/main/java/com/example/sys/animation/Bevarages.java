@@ -1,31 +1,22 @@
 package com.example.sys.animation;
 
-import android.app.Activity;
-import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.PopupMenu;
-import android.widget.PopupWindow;
-import android.widget.RatingBar;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class Bevarages extends AppCompatActivity {
-    RatingBar r;
-    OnFragmentSendVal vSendVal;
-    private RatingBar ratingBar;
+    LinearLayout bottom_cart_layout;
+    TextView text_cart;
+    private int total;
+
+
     RecyclerView recyclerView;
     ImageView filter;
     String[] arr = {"Tata salt 1kg", "Fortune oil 1lt", "Vim dish bar", "Maggie 2mins masal"};
@@ -34,52 +25,40 @@ public class Bevarages extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     Recycler_bevarages recycler;
 
-    public interface OnFragmentSendVal{
-        public void onSentVal(float value);
-    }
 
-    public Bevarages() {
-        // Required empty public constructor
-    }
     @Override
-    public void onAttach(Activity activity) {
-        super.onAttach(activity);
-        try{
-            vSendVal = (OnFragmentSendVal)activity;
-        }catch (ClassCastException e){
-            throw new ClassCastException(activity.toString() + " must implement OnFragmentSendVal");
-        }
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate( savedInstanceState );
+        setContentView( R.layout.activity_bevarages );
+        RecyclerView recyclerView1 = findViewById(R.id.recycle);
 
-
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_bevarages, container, false);
-        RecyclerView recyclerView1 = view.findViewById(R.id.recycle);
-
-        recyclerView1.setLayoutManager(new GridLayoutManager(Bevarages.this, 2));
-        Recycler_bevarages recyclerAdapter = new Recycler_bevarages(Bevarages.this, arr, arr1, img);
-        recyclerView1.setAdapter(recyclerAdapter);
-      getWindow().setSoftInputMode(WindowManager.
-                LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
- setTitle("GROCERY");
-        addListenerOnRatingBar(view);
-        return view;
-    }
-
-    private void addListenerOnRatingBar(View view) {
-        ratingBar = (RatingBar) view.findViewById(R.id.ratingBar);
-        ratingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener() {
-            public void onRatingChanged(RatingBar ratingBar, float rating,
-                                        boolean fromUser) {
-
-
-
-                float val = rating;
-                vSendVal.onSentVal(val);
-                //txtRatingValue.setText(String.valueOf(rating));
-
+        recyclerView1.setLayoutManager( new LinearLayoutManager( this ) );
+        Recycler_bevarages recyclerAdapter = new Recycler_bevarages(Bevarages.this, arr, arr1, img, new ClickListener() {
+            @Override
+            public void itemClick(View view, int pos, int quantity) {
+                if (view.getId() == R.id.item_add) {
+                    total = total + Integer.parseInt(arr1[pos]);
+                    bottom_cart_layout.setVisibility(View.VISIBLE);
+                    text_cart.setText("Add to Cart items \u20B9 " + total);
+                    if (total == 0) {
+                        bottom_cart_layout.setVisibility(View.GONE);
+                    }
+                } else if (view.getId() == R.id.item_sub) {
+                    total = total - Integer.parseInt(arr1[pos]);
+                    bottom_cart_layout.setVisibility(View.VISIBLE);
+                    text_cart.setText("Add to databaseCart items " + total);
+                    if (total == 0) {
+                        bottom_cart_layout.setVisibility(View.GONE);
+                    }
+                }
             }
         });
+
+      getWindow().setSoftInputMode(WindowManager.
+                LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        bottom_cart_layout = findViewById(R.id.bottom_cart_layout);
+        text_cart = findViewById(R.id.cart_text);
+        recyclerView1.setAdapter(recyclerAdapter);
     }
 
     }

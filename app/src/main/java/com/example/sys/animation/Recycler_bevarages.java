@@ -3,20 +3,14 @@ package com.example.sys.animation;
 import android.content.Context;
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
-import android.widget.Toast;
 
 public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.MyViewHolder> {
     RatingBar ratingBar;
@@ -27,9 +21,9 @@ public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.
     int[] img;
 
    private ClickListener clickListener;
-    public Recycler_bevarages(Context Grocery, String[] arr1, String[] arr, int[] img) {
+    public Recycler_bevarages(Context Grocery, String[] arr1, String[] arr, int[] img, ClickListener clickListener) {
         context= Grocery;
-        this.clickListener=clickListener;
+        this.clickListener= this.clickListener;
         this.arr=arr;
         this.arr1=arr1;
         this.img=img;
