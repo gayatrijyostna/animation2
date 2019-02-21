@@ -1,9 +1,11 @@
 package com.example.sys.animation;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
@@ -14,13 +16,14 @@ import android.widget.TextView;
 public class Bevarages extends AppCompatActivity {
     LinearLayout bottom_cart_layout;
     TextView text_cart;
+    ImageView back;
     private int total;
 
 
     RecyclerView recyclerView;
     ImageView filter;
     String[] arr = {"Tata salt 1kg", "Fortune oil 1lt", "Vim dish bar", "Maggie 2mins masal"};
-    String[] arr1 = {"Rs 18", "Rs 19", "Rs 47", "Rs 47"};
+    String[] arr1 = {"18", "19", "47", "47"};
     int[] img = {R.drawable.salt, R.drawable.fortune, R.drawable.vim, R.drawable.maggi};
     ArrayAdapter<String> adapter;
     Recycler_bevarages recycler;
@@ -54,11 +57,34 @@ public class Bevarages extends AppCompatActivity {
             }
         });
 
+
       getWindow().setSoftInputMode(WindowManager.
                 LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
         bottom_cart_layout = findViewById(R.id.bottom_cart_layout);
         text_cart = findViewById(R.id.cart_text);
         recyclerView1.setAdapter(recyclerAdapter);
-    }
+
+
+        bottom_cart_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i=new Intent(Bevarages.this,CartActivity.class);
+                i.putExtra("CART", String.valueOf(total));
+                startActivity(i);
+            }
+        });
+back=findViewById( R.id.back );
+back.setOnClickListener( new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent intent=new Intent( Bevarages.this,Navigation_drawer.class );
+        startActivity( intent );
 
     }
+} );
+    }
+
+
+    }
+
+

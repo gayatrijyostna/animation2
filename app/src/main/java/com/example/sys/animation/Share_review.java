@@ -14,9 +14,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 public class Share_review extends Fragment {
     Button share;
+    String[] arr = {"Tata salt 1kg", "Fortune oil 1lt", "Vim dish bar", "Maggie 2mins masal"};
+    String[] arr1 = {"18", "19", "47", "47"};
+    int[] img = {R.drawable.salt, R.drawable.fortune, R.drawable.vim, R.drawable.maggi};
     public Share_review() {
         // Required empty public constructor
     }
@@ -25,6 +30,11 @@ public class Share_review extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 View view=inflater.inflate(R.layout.activity_share_review, container, false);
+ImageView image_share=view.findViewById( R.id.image_share );
+TextView cost=view.findViewById( R.id.cost );
+       int i= Integer.parseInt( getActivity().getIntent().getStringExtra( "position" ));
+image_share.setImageResource( img[i] );
+       cost.setText( arr1[i] );
 share=view.findViewById( R.id.share);
 share.setOnClickListener( new View.OnClickListener() {
     @Override
@@ -51,7 +61,6 @@ share.setOnClickListener( new View.OnClickListener() {
                 Log.v("TAG", "Permission is granted");
                 return true;
             } else {
-
                 Log.v("TAG", "Permission is revoked");
                 ActivityCompat.requestPermissions(getActivity(), new String[]{Manifest.permission.CALL_PHONE,Manifest.permission.CAMERA,Manifest.permission.SEND_SMS}, 1);
                 return false;

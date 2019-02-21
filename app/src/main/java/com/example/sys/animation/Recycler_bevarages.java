@@ -13,7 +13,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.MyViewHolder> {
-    RatingBar ratingBar;
+
 
     Context context;
     String[] arr;
@@ -23,7 +23,7 @@ public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.
    private ClickListener clickListener;
     public Recycler_bevarages(Context Grocery, String[] arr1, String[] arr, int[] img, ClickListener clickListener) {
         context= Grocery;
-        this.clickListener= this.clickListener;
+        this.clickListener= clickListener;
         this.arr=arr;
         this.arr1=arr1;
         this.img=img;
@@ -40,16 +40,16 @@ public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.
     public void onBindViewHolder(@NonNull MyViewHolder myViewHolder, final int i) {
         myViewHolder.textView.setText( arr[i] );
         myViewHolder.textview2.setText( arr1[i] );
+        myViewHolder.imageView.setImageResource( img[i] );
         myViewHolder.imageView.setOnClickListener( new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (arr[i]=="Fruits and vegetables")
-                {
-                    Intent i=new Intent(context,Home_fragment.class);
+
+                    Intent i=new Intent(context,Share_review.class);
+                    i.putExtra( "position",i );
 
                     context.startActivity( i );
 
-                }
 
             }
         } );
@@ -76,7 +76,7 @@ public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.
             super( itemView );
             textView=itemView.findViewById(R.id.tata);
             textview2=itemView.findViewById(R.id.rupees);
-            imageView = itemView.findViewById(R.id.fruits);
+            imageView = itemView.findViewById(R.id.img);
             quantity = itemView.findViewById(R.id.tv_quantity);
             plus = itemView.findViewById(R.id.item_add);
             minus = itemView.findViewById(R.id.item_sub);
@@ -91,6 +91,8 @@ public class Recycler_bevarages extends RecyclerView.Adapter<Recycler_bevarages.
                         minus.setVisibility(View.VISIBLE);
                     }
                     quantity.setText(String.valueOf(sum));
+                    Log.e( "sum",String.valueOf(sum) );
+                    Log.e("lol",Integer.toString(getAdapterPosition()));
                     listener.itemClick(view, getAdapterPosition(), sum);
                 }
             });
