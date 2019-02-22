@@ -3,6 +3,7 @@
     package="com.example.sys.animation">
 
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,12 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-       <activity android:name=".CartActivity"></activity>
+        <activity android:name=".Sprouts_recycler"></activity>
+        <activity android:name=".CartActivity" />
         <activity android:name=".Update_new" />
         <activity android:name=".Myorder_details" />
-
         <activity android:name=".Review" />
         <activity android:name=".Bevarages" />
+        <activity android:name=".Share_review" />
         <activity android:name=".Fruits_and_vegetables" />
         <activity android:name=".Navigation_drawer">
             <intent-filter>
@@ -26,7 +28,7 @@
         </activity>
         <activity android:name=".Signup" />
         <activity android:name=".Adminpage" />
-        <activity android:name=".Recycler_delivery_address"></activity>
+        <activity android:name=".Recycler_delivery_address" />
     </application>
 
 </manifest>
